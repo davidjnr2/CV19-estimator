@@ -1,16 +1,18 @@
+/* eslint-disable linebreak-style */
+
 const defaultData = {
-    region: {
-    name: "Africa",
+  region: {
+    name: 'Africa',
     avgAge: 19.7,
     avgDailyIncomeInUSD: 5,
     avgDailyIncomePopulation: 0.71
-    },
-    periodType: "days",
-    timeToElapse: 58,
-    reportedCases: 674,
-    population: 66622705,
-    totalHospitalBeds: 1380614
-   };
+  },
+  periodType: 'days',
+  timeToElapse: 58,
+  reportedCases: 674,
+  population: 66622705,
+  totalHospitalBeds: 1380614
+};
 
 const impact = (data, factor) => data.reportedCases * factor;
 const severeCases = (data, factor) => data.currentlyInfected * factor;
@@ -32,7 +34,7 @@ const Cases = (cases, factor) => cases.infectionsByRequestedTime;
 //         WEEKS: "WEEKS * 7",
 //         MONTHS: "MONTHS * 30"
 //       };
-  
+
 //     return {
 //       days: estimateFor(PERIOD.DAYS),
 //       week: estimateFor(PERIOD.WEEKS),
@@ -55,12 +57,10 @@ const estimatedPeriod = (periodType, timeToElapse) => {
   }
 };
 
-const covid19ImpactEstimator = (data) => {
-    return {
-        data,
-        impact:{},
-        severeImpact:{}
-    };
-};
+const covid19ImpactEstimator = (data) => ({
+  data,
+  impact: {},
+  severeImpact: {}
+});
 
 export default covid19ImpactEstimator;

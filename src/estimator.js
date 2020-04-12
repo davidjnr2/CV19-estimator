@@ -51,7 +51,7 @@ const estimatedPeriod = (periodType, timeToElapse){
     case 'weeks': return timeToElapse * 7;
     case 'month': return timeToElapse * 30;
     case 'months': return timeToElapse * 30;
-    default: return 'Enter correct timePeriod'
+    default: return 'Enter correct timePeriod';
   }
 };
 

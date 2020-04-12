@@ -12,10 +12,10 @@ const defaultData = {
     totalHospitalBeds: 1380614
    };
 
-const impact = (data, factor) = data.reportedCases * factor;
-const severeCases = (data, factor) = data.currentlyInfected * factor;
-const NumberOfBeds = (beds, data) = data.totalHospitalBeds - data.severeCasesByRequestedTime;
-const Cases = (cases, factor) = cases.infectionByRequestedTime;
+const impact = (data, factor) => data.reportedCases * factor;
+const severeCases = (data, factor) => data.currentlyInfected * factor;
+const NumberOfBeds = (beds, data) => data.totalHospitalBeds - data.severeCasesByRequestedTime;
+const Cases = (cases, factor) => cases.infectionsByRequestedTime;
 
 
 // const estimatePeriod = (timeToElapse, estimator) => {
@@ -42,7 +42,7 @@ const Cases = (cases, factor) = cases.infectionByRequestedTime;
 //     };
 //   };
 
-const estimatedPeriod = (periodType, timeToElapse){
+const estimatedPeriod = (periodType, timeToElapse) => {
   let time = periodType;
   time = periodType.toLowerCase();
   switch (time) {
@@ -56,7 +56,7 @@ const estimatedPeriod = (periodType, timeToElapse){
 };
 
 const covid19ImpactEstimator = (data) => {
-    return{
+    return {
         data,
         impact:{},
         severeImpact:{}

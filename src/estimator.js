@@ -18,31 +18,42 @@ const NumberOfBeds = (beds, data) = data.totalHospitalBeds - data.severeCasesByR
 const Cases = (cases, factor) = cases.infectionByRequestedTime;
 
 
-const estimatePeriod = (timeToElapse, estimator) => {
-    const estimateFor = periodType => () => {
-      const data = {
-        ...defaultData,
-        ...{ timeToElapse, periodType },
-      };
-      return estimator(data);
-    };
+// const estimatePeriod = (timeToElapse, estimator) => {
+//     const estimateFor = periodType => () => {
+//       const data = {
+//         ...defaultData,
+//         ...{ timeToElapse, periodType },
+//       };
+//       return estimator(data);
+//     };
 
-  let PERIOD = {
-        DAYS: "DAYS",
-        WEEKS: "WEEKS * 7",
-        MONTHS: "MONTHS * 30"
-      };
+//   let PERIOD = {
+//         DAYS: "DAYS",
+//         WEEKS: "WEEKS * 7",
+//         MONTHS: "MONTHS * 30"
+//       };
   
-    return {
-      days: estimateFor(PERIOD.DAYS),
-      week: estimateFor(PERIOD.WEEKS),
-      weeks: estimateFor(PERIOD.WEEKS),
-      month: estimateFor(PERIOD.MONTHS),
-      months: estimateFor(PERIOD.MONTHS)
-    };
-  };
+//     return {
+//       days: estimateFor(PERIOD.DAYS),
+//       week: estimateFor(PERIOD.WEEKS),
+//       weeks: estimateFor(PERIOD.WEEKS),
+//       month: estimateFor(PERIOD.MONTHS),
+//       months: estimateFor(PERIOD.MONTHS)
+//     };
+//   };
 
-
+const estimatedPeriod = (periodType, timeToElapse){
+  let time = periodType;
+  time = periodType.toLowerCase();
+  switch (time) {
+    case 'days': return timeToElapse;
+    case 'week': return timeToElapse * 7;
+    case 'weeks': return timeToElapse * 7;
+    case 'month': return timeToElapse * 30;
+    case 'months': return timeToElapse * 30;
+    default: return 'Enter correct timePeriod'
+  }
+};
 
 const covid19ImpactEstimator = (data) => {
     return{

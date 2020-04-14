@@ -56,9 +56,9 @@ const estimateInfectedPeople = (reportedCases, factor) => {
     @returns { Number }estimatedInfections
 */
 
-const estimateInfectionsByRequestedTime = (currentlyInfected, duration, frequency, periodType) => {
+const estimateInfectionsByRequestedTime = (currentlyInfected, duration, frequency, type) => {
   let days;
-  switch (periodType) {
+  switch (type) {
     case 'weeks': days = parseFloat(duration) * 7;
       break;
     case 'months': days = parseFloat(duration) * 30;
@@ -139,9 +139,9 @@ const estimateVentilatorCases = (infectionsByRequestedTime) => {
 */
 
 // eslint-disable-next-line
-const estimateEconomyLoss = (infectionsByRequestedTime, avgDailyIncomeInUSD, avgDailyIncomePopulation, duration, periodType) => {
+const estimateEconomyLoss = (infectionsByRequestedTime, avgDailyIncomeInUSD, avgDailyIncomePopulation, duration, type) => {
   let days;
-  switch (periodType) {
+  switch (type) {
     case 'weeks': days = parseFloat(duration) * 7;
       break;
     case 'months': days = parseFloat(duration) * 30;

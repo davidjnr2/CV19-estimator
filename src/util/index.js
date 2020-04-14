@@ -41,7 +41,7 @@ const impactFactor = {
 */
 
 const estimateInfectedPeople = (reportedCases, factor) => {
-  const currentlyInfected = reportedCases * factor;
+  const currentlyInfected = Math.trunc(reportedCases) * Math.trunc(factor);
   return currentlyInfected;
 };
 
@@ -68,7 +68,7 @@ const estimateInfectionsByRequestedTime = (currentlyInfected, duration, frequenc
 
   const currentlyInfectedNumber = parseFloat(currentlyInfected);
   const frequencyNumber = parseFloat(frequency);
-  const estimatedInfections = currentlyInfectedNumber * (2 ** Math.floor(days / frequencyNumber));
+  const estimatedInfections = currentlyInfectedNumber * (2 ** Math.trunc(days / frequencyNumber));
   return estimatedInfections;
 };
 

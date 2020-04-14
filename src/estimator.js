@@ -38,6 +38,8 @@ const covid19ImpactEstimator = (data) => {
   } = data;
 
   const currentlyInfectedMildImpact = estimateInfectedPeople(reportedCases, impactFactor.mildImpact);
+  // eslint-disable-next-line no-console
+  console.log(typeof currentlyInfectedMildImpact)
 
   const currentlyInfectedSevereImpact = estimateInfectedPeople(reportedCases, impactFactor.severeImpact);
 

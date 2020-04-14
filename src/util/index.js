@@ -66,7 +66,7 @@ const estimateInfectionsByRequestedTime = (currentlyInfected, frequency, periodT
       break;
     default: days = math.trunc(timeToElapse);
   }
-  const factor = math.trunc(days/frequency);
+  const factor = math.trunc(days / frequency);
   const estimatedInfections = math.trunc(currentlyInfected) * (2 ** factor);
   return estimatedInfections;
 };
@@ -95,12 +95,12 @@ const estimateHospitalBedsByRequestedTime = (severeCasesByRequestedTime, totalHo
   const expectedBedsAvailable = totalHospitalBeds * 0.35;
   const occupied = totalHospitalBeds * 0.65;
   const availableBeds = math.trunc(expectedBedsAvailable - severeCasesByRequestedTime);
-  if(availableBeds < 0){
+  if (availableBeds < 0) {
     return computeToWholeNumber(occupied);
   }
-  else{
+  else {
     return computeToWholeNumber(availableBeds);
-   }
+  }
 };
 
 
@@ -159,7 +159,7 @@ const estimateEconomyLoss = (infectionsByRequestedTime, avgDailyIncomeInUSD, avg
 
 
 export {
-  impactFactor ,
+  impactFactor,
   estimateInfectedPeople,
   estimateInfectionsByRequestedTime,
   estimateSeverePositiveCaseRequireHospitalization,

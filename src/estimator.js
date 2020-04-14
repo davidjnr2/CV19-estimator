@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   estimateInfectedPeople,
   estimateInfectionsByRequestedTime,
@@ -35,47 +36,38 @@ const covid19ImpactEstimator = (data) => {
     totalHospitalBeds,
     region: { avgDailyIncomeInUSD, avgDailyIncomePopulation }
   } = data;
-
-  const currentlyInfectedMildImpact = 
-  estimateInfectedPeople(reportedCases, impactFactor.mildImpact);
-
-  const currentlyInfectedSevereImpact = 
-  estimateInfectedPeople(reportedCases, impactFactor.severeImpact);
-
-  const infectionsByRequestedTimeMildImpact = 
-  estimateInfectionsByRequestedTime(currentlyInfectedMildImpact, 3, periodType);
-
-  const infectionsByRequestedTimeSevereImpact = 
-  estimateInfectionsByRequestedTime(currentlyInfectedSevereImpact, 3, periodType);
-
-  const severeCasesByRequestedTimeMildImpact = 
-  estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeMildImpact);
-
-  const severeCasesByRequestedTimeSevereImpact = 
-  estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeSevereImpact);
-
+  // eslint-disable-next-line:max-line-length
+  const currentlyInfectedMildImpact = estimateInfectedPeople(reportedCases, impactFactor.mildImpact);
+  // eslint-disable-next-line:max-line-length
+  const currentlyInfectedSevereImpact = estimateInfectedPeople(reportedCases, impactFactor.severeImpact);
+  // eslint-disable-next-line:max-line-length
+  const infectionsByRequestedTimeMildImpact = estimateInfectionsByRequestedTime(currentlyInfectedMildImpact, 3, periodType);
+  // eslint-disable-next-line:max-line-length
+  const infectionsByRequestedTimeSevereImpact = estimateInfectionsByRequestedTime(currentlyInfectedSevereImpact, 3, periodType);
+  // eslint-disable-next-line:max-line-length
+  const severeCasesByRequestedTimeMildImpact = estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeMildImpact);
+  // eslint-disable-next-line:max-line-length
+  const severeCasesByRequestedTimeSevereImpact = estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeSevereImpact);
+  // eslint-disable-next-line:max-line-length
   const hospitalBedsByRequestedTimeMildImpact = estimateHospitalBedsByRequestedTime(
     severeCasesByRequestedTimeMildImpact,
     totalHospitalBeds
   );
+  // eslint-disable-next-line:max-line-length
+  const hospitalBedsByRequestedTimeSevereImpact = estimateHospitalBedsByRequestedTime(severeCasesByRequestedTimeSevereImpact, totalHospitalBeds);
+  // eslint-disable-next-line:max-line-length
+  const casesForICUByRequestedTimeMildImpact = estimateICUCareCases(infectionsByRequestedTimeMildImpact);
 
-  const hospitalBedsByRequestedTimeSevereImpact = 
-  estimateHospitalBedsByRequestedTime(severeCasesByRequestedTimeSevereImpact, totalHospitalBeds);
+  // eslint-disable-next-line:max-line-length
+  const casesForICUByRequestedTimeSevereImpact = estimateICUCareCases(infectionsByRequestedTimeSevereImpact);
+  // eslint-disable-next-line:max-line-length
 
-  const casesForICUByRequestedTimeMildImpact = 
-  estimateICUCareCases(infectionsByRequestedTimeMildImpact);
+  const casesForVentilatorsByRequestedTimeMildImpact = estimateVentilatorCases(infectionsByRequestedTimeMildImpact);
+  // eslint-disable-next-line:max-line-length
 
-  const casesForICUByRequestedTimeSevereImpact = 
-  estimateICUCareCases(infectionsByRequestedTimeSevereImpact);
+  const casesForVentilatorsByRequestedTimeSevereImpact = estimateVentilatorCases(infectionsByRequestedTimeSevereImpact);
 
-  const casesForVentilatorsByRequestedTimeMildImpact = 
-  estimateVentilatorCases(infectionsByRequestedTimeMildImpact);
-
-  const casesForVentilatorsByRequestedTimeSevereImpact = 
-  estimateVentilatorCases(infectionsByRequestedTimeSevereImpact);
-
-  const dollarsInFlightMildImpact = 
-  estimateEconomyLoss(
+  const dollarsInFlightMildImpact = estimateEconomyLoss(
     infectionsByRequestedTimeMildImpact,
     avgDailyIncomeInUSD,
     avgDailyIncomePopulation,
@@ -83,8 +75,7 @@ const covid19ImpactEstimator = (data) => {
     periodType
   );
 
-  const dollarsInFlightSevereImpact = 
-  estimateEconomyLoss(
+  const dollarsInFlightSevereImpact = estimateEconomyLoss(
     infectionsByRequestedTimeSevereImpact,
     avgDailyIncomeInUSD,
     avgDailyIncomePopulation,

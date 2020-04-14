@@ -20,11 +20,7 @@ figures, simply discard the decimal part.
    @example : 3.8888888889 should be 3, not 3.88, 3.8 or 4. Also, 453325343.654
 becomes 453325343 */
 
-<<<<<<< HEAD
 const computeToWholeNumber = (num) => parseFloat(num.toString().split('.')[0]);
-=======
- const computeToWholeNumber = (num) => parseFloat(num.toString().split('.')[0]);
->>>>>>> 8c9a94ab01652259be25372a64fc7a54f1a700f0
 
 /*
 @Description This object shows the level of impact by a factor

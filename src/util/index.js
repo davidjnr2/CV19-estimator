@@ -58,7 +58,6 @@ const estimateInfectedPeople = (reportedCases, impactFactor) => {
 
 const estimateInfectionsByRequestedTime = (currentlyInfected, frequency, periodType) => {
   let days;
-  let frequency = 3;
   days = timeToElapse;
   switch (periodType) {
     case 'weeks': days * 7;

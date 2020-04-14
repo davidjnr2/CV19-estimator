@@ -5,7 +5,7 @@ import {
   estimateHospitalBedsByRequestedTime,
   estimateICUCareCases,
   estimateVentilatorCases,
-  estimateEconomyLoss,
+  estimateEconomyLoss
 } from './util/index';
 
 /*
@@ -30,47 +30,59 @@ const covid19ImpactEstimator = (data) => {
 
 
   const {
-    reportedCases, 
-    periodType, 
-    timeToElapse, 
+    reportedCases,
+    periodType,
+    timeToElapse,
     totalHospitalBeds,
     region: { avgDailyIncomeInUSD, avgDailyIncomePopulation }
   } = data;
 
-  const currentlyInfectedMildImpact = estimateInfectedPeople(reportedCases, impactFactor.mildImpact);
+  const currentlyInfectedMildImpact = 
+  estimateInfectedPeople(reportedCases, impactFactor.mildImpact);
 
 
-  const currentlyInfectedSevereImpact = estimateInfectedPeople(reportedCases, impactFactor.severeImpact);
+  const currentlyInfectedSevereImpact = 
+  estimateInfectedPeople(reportedCases, impactFactor.severeImpact);
 
 
-  const infectionsByRequestedTimeMildImpact = estimateInfectionsByRequestedTime(currentlyInfected, frequency, periodType);
+  const infectionsByRequestedTimeMildImpact = 
+  estimateInfectionsByRequestedTime(currentlyInfectedMildImpact, 3, periodType);
 
 
-  const infectionsByRequestedTimeSevereImpact = estimateInfectionsByRequestedTime(currentlyInfected, frequency, periodType);
-
-  // eslint-disable-next-line
-  const severeCasesByRequestedTimeMildImpact = estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeMildImpact);
-
-  // eslint-disable-next-line
-  const severeCasesByRequestedTimeSevereImpact = estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeSevereImpact);
+  const infectionsByRequestedTimeSevereImpact = 
+  estimateInfectionsByRequestedTime(currentlyInfectedSevereImpact, 3, periodType);
 
   // eslint-disable-next-line
-  const hospitalBedsByRequestedTimeMildImpact = estimateHospitalBedsByRequestedTime(severeCasesByRequestedTimeMildImpact, totalHospitalBeds);
+  const severeCasesByRequestedTimeMildImpact = 
+  estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeMildImpact);
 
   // eslint-disable-next-line
-  const hospitalBedsByRequestedTimeSevereImpact = estimateHospitalBedsByRequestedTime(severeCasesByRequestedTimeSevereImpact, totalHospitalBeds);
+  const severeCasesByRequestedTimeSevereImpact = 
+  estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeSevereImpact);
 
   // eslint-disable-next-line
-  const casesForICUByRequestedTimeMildImpact = estimateICUCareCases(infectionsByRequestedTimeMildImpact);
+  const hospitalBedsByRequestedTimeMildImpact = 
+  estimateHospitalBedsByRequestedTime(severeCasesByRequestedTimeMildImpact, totalHospitalBeds);
 
   // eslint-disable-next-line
-  const casesForICUByRequestedTimeSevereImpact = estimateICUCareCases(infectionsByRequestedTimeSevereImpact);
+  const hospitalBedsByRequestedTimeSevereImpact = 
+  estimateHospitalBedsByRequestedTime(severeCasesByRequestedTimeSevereImpact, totalHospitalBeds);
 
   // eslint-disable-next-line
-  const casesForVentilatorsByRequestedTimeMildImpact = estimateVentilatorCases(infectionsByRequestedTimeMildImpact);
+  const casesForICUByRequestedTimeMildImpact = 
+  estimateICUCareCases(infectionsByRequestedTimeMildImpact);
 
   // eslint-disable-next-line
-  const casesForVentilatorsByRequestedTimeSevereImpact = estimateVentilatorCases(infectionsByRequestedTimeSevereImpact);
+  const casesForICUByRequestedTimeSevereImpact = 
+  estimateICUCareCases(infectionsByRequestedTimeSevereImpact);
+
+  // eslint-disable-next-line
+  const casesForVentilatorsByRequestedTimeMildImpact = 
+  estimateVentilatorCases(infectionsByRequestedTimeMildImpact);
+
+  // eslint-disable-next-line
+  const casesForVentilatorsByRequestedTimeSevereImpact = 
+  estimateVentilatorCases(infectionsByRequestedTimeSevereImpact);
 
 
   const dollarsInFlightMildImpact = estimateEconomyLoss(

@@ -56,14 +56,14 @@ const estimateInfectedPeople = (reportedCases, factor) => {
     @returns { Number }estimatedInfections
 */
 
-const estimateInfectionsByRequestedTime = (currentlyInfected, frequency, periodType) => {
+const estimateInfectionsByRequestedTime = (currentlyInfected, duration, frequency, periodType) => {
   let days;
   switch (periodType) {
-    case 'weeks': Math.trunc(days * 7);
+    case 'weeks': days = parseFloat(duration) * 7;
       break;
-    case 'months': Math.trunc(days * 30);
+    case 'months': days = parseFloat(duration) * 30;
       break;
-    default: return 'invalid Timespan';
+    default: days = parseFloat(duration);
   }
   const factor = Math.trunc(days / frequency);
   const estimatedInfections = Math.trunc(currentlyInfected) * (2 ** factor);
@@ -139,14 +139,14 @@ const estimateVentilatorCases = (infectionsByRequestedTime) => {
 */
 
 // eslint-disable-next-line
-const estimateEconomyLoss = (infectionsByRequestedTime, avgDailyIncomeInUSD, avgDailyIncomePopulation, periodType) => {
+const estimateEconomyLoss = (infectionsByRequestedTime, avgDailyIncomeInUSD, avgDailyIncomePopulation, duration, periodType) => {
   let days;
   switch (periodType) {
-    case 'weeks': Math.trunc(days * 7);
+    case 'weeks': days = parseFloat(duration) * 7;
       break;
-    case 'months': Math.trunc(days * 30);
+    case 'months': days = parseFloat(duration) * 30;
       break;
-    default: return 'invalid Timespan';
+    default: days = parseFloat(duration);
   }
   // eslint-disable-next-line
   const estimateEconomyLoss = (infectionsByRequestedTime * avgDailyIncomeInUSD * avgDailyIncomePopulation) / days;

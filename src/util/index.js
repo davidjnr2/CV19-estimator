@@ -151,7 +151,7 @@ const estimateEconomyLoss = (infectionsByRequestedTime, avgDailyIncomeInUSD, avg
     default: days = parseFloat(duration);
   }
   // eslint-disable-next-line
-  const estimateEconomyLoss = ( parseFloat(infectionsByRequestedTime) * parseFloat(avgDailyIncome) * parseFloat(avgIncomePopulation)) / days;
+  const estimateEconomyLoss = ( parseFloat(infectionsByRequestedTime) * parseFloat(avgDailyIncomeInUSD) * parseFloat(avgDailyIncomePopulation)) / days;
   return computeToWholeNumber(estimateEconomyLoss);
 };
 

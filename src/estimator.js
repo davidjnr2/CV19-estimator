@@ -38,6 +38,7 @@ const covid19ImpactEstimator = (data) => {
 
   const currentlyInfectedMildImpact = 
   estimateInfectedPeople(reportedCases, impactFactor.mildImpact);
+<<<<<<< HEAD
 
   const currentlyInfectedSevereImpact = 
   estimateInfectedPeople(reportedCases, impactFactor.severeImpact);
@@ -71,6 +72,49 @@ const covid19ImpactEstimator = (data) => {
   const casesForVentilatorsByRequestedTimeMildImpact = 
   estimateVentilatorCases(infectionsByRequestedTimeMildImpact);
 
+=======
+  // eslint-disable-next-line
+  const currentlyInfectedSevereImpact = 
+  estimateInfectedPeople(reportedCases, impactFactor.severeImpact);
+  // eslint-disable-next-line
+  const infectionsByRequestedTimeMildImpact = 
+  estimateInfectionsByRequestedTime(currentlyInfectedMildImpact, 3, periodType);
+  // eslint-disable-next-line
+  const infectionsByRequestedTimeSevereImpact = 
+  estimateInfectionsByRequestedTime(currentlyInfectedSevereImpact, 3, periodType);
+
+  // eslint-disable-next-line
+  const severeCasesByRequestedTimeMildImpact = 
+  estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeMildImpact);
+
+  // eslint-disable-next-line
+  const severeCasesByRequestedTimeSevereImpact = 
+  estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeSevereImpact);
+
+  // eslint-disable-next-line
+  const hospitalBedsByRequestedTimeMildImpact = estimateHospitalBedsByRequestedTime(
+    severeCasesByRequestedTimeMildImpact,
+    totalHospitalBeds
+  );
+
+  // eslint-disable-next-line
+  const hospitalBedsByRequestedTimeSevereImpact = 
+  estimateHospitalBedsByRequestedTime(severeCasesByRequestedTimeSevereImpact, totalHospitalBeds);
+
+  // eslint-disable-next-line
+  const casesForICUByRequestedTimeMildImpact = 
+  estimateICUCareCases(infectionsByRequestedTimeMildImpact);
+
+  // eslint-disable-next-line
+  const casesForICUByRequestedTimeSevereImpact = 
+  estimateICUCareCases(infectionsByRequestedTimeSevereImpact);
+
+  // eslint-disable-next-line
+  const casesForVentilatorsByRequestedTimeMildImpact = 
+  estimateVentilatorCases(infectionsByRequestedTimeMildImpact);
+
+  // eslint-disable-next-line
+>>>>>>> 8c9a94ab01652259be25372a64fc7a54f1a700f0
   const casesForVentilatorsByRequestedTimeSevereImpact = 
   estimateVentilatorCases(infectionsByRequestedTimeSevereImpact);
 

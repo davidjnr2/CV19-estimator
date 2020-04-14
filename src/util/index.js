@@ -141,7 +141,7 @@ const estimateVentilatorCases = (infectionsByRequestedTime) => {
 */
 
 // eslint-disable-next-line
-const estimateEconomyMonetryLoss = (infectionsByRequestedTime, avgDailyIncomeInUSD, avgDailyIncomePopulation, periodType) => {
+const estimateEconomyLoss = (infectionsByRequestedTime, avgDailyIncomeInUSD, avgDailyIncomePopulation, periodType) => {
   let days;
   days = timeToElapse;
   switch (periodType) {
@@ -153,8 +153,8 @@ const estimateEconomyMonetryLoss = (infectionsByRequestedTime, avgDailyIncomeInU
   }
 
   // eslint-disable-next-line
-  const estimatedEconomyLoss = (infectionsByRequestedTime * avgDailyIncomeInUSD * avgDailyIncomePopulation) / days;
-  return computeToWholeNumber(estimatedEconomyLoss);
+  const estimateEconomyLoss = (infectionsByRequestedTime * avgDailyIncomeInUSD * avgDailyIncomePopulation) / days;
+  return computeToWholeNumber(estimateEconomyLoss);
 };
 
 

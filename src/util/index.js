@@ -69,7 +69,7 @@ const estimateInfectionsByRequestedTime = (currentlyInfected, duration, frequenc
   }
 
   const currentlyInfectedNumber = Math.trunc(currentlyInfected);
-  const frequencyNumber = Math.trunc(days/frequency);
+  const frequencyNumber = Math.trunc(days / frequency);
   const estimatedInfections = currentlyInfectedNumber * (2 ** frequencyNumber);
   return estimatedInfections;
 };

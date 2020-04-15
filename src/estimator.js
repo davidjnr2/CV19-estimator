@@ -6,7 +6,7 @@ import {
   estimateHospitalBedsByRequestedTime,
   estimateICUCareCases,
   estimateVentilatorCases,
-  estimateEconomyLoss,
+  estimateEconomyLoss
 } from './util/index';
 
 import impactFactor from './util/constant';

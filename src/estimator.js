@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   estimateInfectedPeople,
   estimateInfectionsByRequestedTime,
@@ -8,22 +9,6 @@ import {
   estimateEconomyLoss,
   impactFactor
 } from './util/index';
-
-/*
-{
-    region: {
-        name: "Africa",
-        avgAge: 19.7,
-        avgDailyIncomeInUSD: 5,
-        avgDailyIncomePopulation: 0.71
-    },
-    periodType: "days",
-    timeToElapse: 58,
-    reportedCases: 674,
-    population: 66622705,
-    totalHospitalBeds: 1380614
-}
-*/
 
 const covid19ImpactEstimator = (data) => {
   const inputData = data;
@@ -36,54 +21,37 @@ const covid19ImpactEstimator = (data) => {
     region: { avgDailyIncomeInUSD, avgDailyIncomePopulation }
   } = data;
 
-  const currentlyInfectedMildImpact = 
-  estimateInfectedPeople(reportedCases, impactFactor.mildImpact);
-  // eslint-disable-next-line
-  const currentlyInfectedSevereImpact = 
-  estimateInfectedPeople(reportedCases, impactFactor.severeImpact);
-  // eslint-disable-next-line
-  const infectionsByRequestedTimeMildImpact = 
-  estimateInfectionsByRequestedTime(currentlyInfectedMildImpact, 3, periodType);
-  // eslint-disable-next-line
-  const infectionsByRequestedTimeSevereImpact = 
-  estimateInfectionsByRequestedTime(currentlyInfectedSevereImpact, 3, periodType);
+  const currentlyInfectedMildImpact = estimateInfectedPeople(reportedCases, impactFactor.mildImpact);
 
-  // eslint-disable-next-line
-  const severeCasesByRequestedTimeMildImpact = 
-  estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeMildImpact);
+  const currentlyInfectedSevereImpact = estimateInfectedPeople(reportedCases, impactFactor.severeImpact);
 
-  // eslint-disable-next-line
-  const severeCasesByRequestedTimeSevereImpact = 
-  estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeSevereImpact);
+  const infectionsByRequestedTimeMildImpact = estimateInfectionsByRequestedTime(currentlyInfectedMildImpact, timeToElapse, 3, periodType);
 
-  // eslint-disable-next-line
+  const infectionsByRequestedTimeSevereImpact = estimateInfectionsByRequestedTime(currentlyInfectedSevereImpact, timeToElapse, 3, periodType);
+
+  const severeCasesByRequestedTimeMildImpact = estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeMildImpact);
+
+  const severeCasesByRequestedTimeSevereImpact = estimateSeverePositiveCaseRequireHospitalization(infectionsByRequestedTimeSevereImpact);
+
   const hospitalBedsByRequestedTimeMildImpact = estimateHospitalBedsByRequestedTime(
     severeCasesByRequestedTimeMildImpact,
     totalHospitalBeds
   );
 
-  // eslint-disable-next-line
-  const hospitalBedsByRequestedTimeSevereImpact = 
-  estimateHospitalBedsByRequestedTime(severeCasesByRequestedTimeSevereImpact, totalHospitalBeds);
+  const hospitalBedsByRequestedTimeSevereImpact = estimateHospitalBedsByRequestedTime(severeCasesByRequestedTimeSevereImpact, totalHospitalBeds);
 
-  // eslint-disable-next-line
-  const casesForICUByRequestedTimeMildImpact = 
-  estimateICUCareCases(infectionsByRequestedTimeMildImpact);
+  const casesForICUByRequestedTimeMildImpact = estimateICUCareCases(infectionsByRequestedTimeMildImpact);
 
-  // eslint-disable-next-line
-  const casesForICUByRequestedTimeSevereImpact = 
-  estimateICUCareCases(infectionsByRequestedTimeSevereImpact);
 
-  // eslint-disable-next-line
-  const casesForVentilatorsByRequestedTimeMildImpact = 
-  estimateVentilatorCases(infectionsByRequestedTimeMildImpact);
+  const casesForICUByRequestedTimeSevereImpact = estimateICUCareCases(infectionsByRequestedTimeSevereImpact);
 
-  // eslint-disable-next-line
-  const casesForVentilatorsByRequestedTimeSevereImpact = 
-  estimateVentilatorCases(infectionsByRequestedTimeSevereImpact);
 
-  const dollarsInFlightMildImpact = 
-  estimateEconomyLoss(
+  const casesForVentilatorsByRequestedTimeMildImpact = estimateVentilatorCases(infectionsByRequestedTimeMildImpact);
+
+
+  const casesForVentilatorsByRequestedTimeSevereImpact = estimateVentilatorCases(infectionsByRequestedTimeSevereImpact);
+
+  const dollarsInFlightMildImpact = estimateEconomyLoss(
     infectionsByRequestedTimeMildImpact,
     avgDailyIncomeInUSD,
     avgDailyIncomePopulation,
@@ -91,8 +59,7 @@ const covid19ImpactEstimator = (data) => {
     periodType
   );
 
-  const dollarsInFlightSevereImpact = 
-  estimateEconomyLoss(
+  const dollarsInFlightSevereImpact = estimateEconomyLoss(
     infectionsByRequestedTimeSevereImpact,
     avgDailyIncomeInUSD,
     avgDailyIncomePopulation,

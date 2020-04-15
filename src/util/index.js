@@ -22,15 +22,7 @@ becomes 453325343 */
 
 const computeToWholeNumber = (num) => parseFloat(num.toString().split('.')[0]);
 
-/*
-@Description This object shows the level of impact by a factor
-@params {object} with properties for mildImpact and severeImpact
-*/
 
-const impactFactor = {
-  mildImpact: 10,
-  severeImpact: 50
-};
 /* eslint-disable max-len */
 /**
     * Given the reportedCases and the multipler, this function estimates the number of currently infected
@@ -157,7 +149,6 @@ const estimateEconomyLoss = (infectionsByRequestedTime, avgDailyIncomeInUSD, avg
 
 
 export {
-  impactFactor,
   estimateInfectedPeople,
   estimateInfectionsByRequestedTime,
   estimateSeverePositiveCaseRequireHospitalization,

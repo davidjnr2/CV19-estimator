@@ -7,8 +7,9 @@ import {
   estimateICUCareCases,
   estimateVentilatorCases,
   estimateEconomyLoss,
-  impactFactor
 } from './util/index';
+
+import impactFactor from './util/constant';
 
 /*
 {

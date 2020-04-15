@@ -85,13 +85,8 @@ const estimateSeverePositiveCaseRequireHospitalization = (infectionsByRequestedT
 
 const estimateHospitalBedsByRequestedTime = (severeCasesByRequestedTime, totalHospitalBeds) => {
   // const requiredNumberOfBeds = parseFloat(severeCasesByRequestedTime);
-  const expectedBedsAvailable = totalHospitalBeds * 0.35;
-  const occupied = totalHospitalBeds * 0.65;
+  const expectedBedsAvailable = Math.trunc(totalHospitalBeds) * 0.35;
   const availableBeds = Math.trunc(expectedBedsAvailable - severeCasesByRequestedTime);
-  if (availableBeds < 0) {
-    return computeToWholeNumber(occupied);
-  }
-
   return computeToWholeNumber(availableBeds);
 };
 

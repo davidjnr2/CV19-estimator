@@ -22,6 +22,16 @@ becomes 453325343 */
 
 const computeToWholeNumber = (num) => parseFloat(num.toString().split('.')[0]);
 
+/*
+@Description This object shows the level(mild and severe) of impact by a factor
+@params {object} with properties for mildImpact and severeImpact
+*/
+
+const impactFactor = {
+  mildImpact: 10,
+  severeImpact: 50
+};
+
 
 /* eslint-disable max-len */
 /**
@@ -151,5 +161,6 @@ export {
   estimateICUCareCases,
   estimateVentilatorCases,
   estimateEconomyLoss,
-  computeToWholeNumber
+  computeToWholeNumber,
+  impactFactor
 };
